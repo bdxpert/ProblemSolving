@@ -1,5 +1,14 @@
-package com.problem.solve.v2.miscellaneous;
+package com.problem.solve.v2.dynamic;
+/*
+Input: nums = [2,3,1,1,4]
+Output: true
+Explanation: Jump 1 step from index 0 to 1, then 3 steps to the last index.
 
+Input: nums = [3,2,1,0,4]
+Output: false
+Explanation: You will always arrive at index 3 no matter what. Its maximum jump length is 0,
+which makes it impossible to reach the last index.
+ */
 public class JumpGame {
     public static void main(String args[]) {
         int[] data = {2, 3, 1, 1, 4};
@@ -14,6 +23,34 @@ public class JumpGame {
         System.out.println(canJump(data6));
     }
     public static boolean canJump(int[] nums) {
+        int last = nums.length - 1;
+        int maxReach = 0; // Maximum index we can reach
+
+        for (int i = 0; i <= maxReach; i++) {
+            maxReach = Math.max(maxReach, i + nums[i]);
+
+            if (maxReach >= last) {
+                return true; // We can reach the last index
+            }
+        }
+
+        return false; // Cannot reach the last index
+    }
+    // recursion
+    public boolean helper(int[] nums,int currIndex){
+        int len = nums.length-1;
+        if(currIndex>=len)return true;
+        boolean ans = false;
+        for(int i = nums[currIndex]; i>=1;i--){
+            System.out.println(i+"||"+currIndex);
+            ans = helper(nums,currIndex+i);
+            if(ans)break;
+        }
+        System.out.println("||"+currIndex);
+        return ans;
+    }
+
+    public static boolean canJumpV2(int[] nums) {
         if(nums.length==1 && nums[0] == 1) return true;
         return canJump2(nums, nums[nums.length-1]);
         /*

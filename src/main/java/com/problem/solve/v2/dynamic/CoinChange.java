@@ -7,7 +7,8 @@ public class CoinChange {
         int[] coin ={1,2,5}; //amount 11
         int[] coin2 = {186,419,83,408};
 //        System.out.println(coinChange(coin2, 6249));
-        System.out.println(coinChangev2(coin, 6));
+//        System.out.println(coinChangev2(coin, 6));
+        System.out.println(coinChangev3(coin, 6));
     }
 
 
@@ -28,6 +29,22 @@ public class CoinChange {
         }
         count[remminder-1] = (min==Integer.MAX_VALUE) ? -1 : min;
         return count[remminder-1];
+    }
+    // reference https://www.youtube.com/watch?v=NNcN5X1wsaw
+    public static int coinChangev3(int[] coins, int amount) {
+        if(amount <1) return -1;
+        int[] dp = new int[amount+1];
+        for(int i=1;i<=amount; i++) {
+            dp[i] = Integer.MAX_VALUE;
+            for(int coin:coins) {
+                if(coin <=i && dp[i-coin] !=Integer.MAX_VALUE) {
+                    dp[i] = Math.min(dp[i], 1+dp[i-coin]);
+                }
+            }
+        }
+        if(dp[amount] == Integer.MAX_VALUE) return -1;
+
+        return dp[amount];
     }
 
     public static int coinChange(int[] coins, int amount) {
@@ -63,5 +80,23 @@ public class CoinChange {
             }
         }
         return -1;
+    }
+    /*
+     * solution using recursion
+     */
+    public int coinChangeRecursion(int[] coins, int amount) {
+        int res = recursion(coins, amount, 0);
+        return res == Integer.MAX_VALUE ? -1 : res;
+    }
+    public int recursion(int[] coins, int n, int number) {
+        if(n == 0)
+            return number;
+        if(n<0)
+            return Integer.MAX_VALUE;
+        int res = Integer.MAX_VALUE;
+        for(int i=0; i<coins.length; i++)
+            res = Math.min(res, recursion(coins, n-coins[i], number+1));
+
+        return res;
     }
 }

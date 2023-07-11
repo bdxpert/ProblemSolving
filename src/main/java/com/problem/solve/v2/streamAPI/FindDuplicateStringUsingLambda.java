@@ -2,6 +2,7 @@ package com.problem.solve.v2.streamAPI;
 /* Find duplicate in list java 8 from list of strings? */
 //https://rathod-ajay.medium.com/senior-java-dev-interview-question-2023-series-17-contains-all-the-interview-questions-till-now-a3dd19121d67
 //https://rathod-ajay.medium.com/java-developer-interview-question-series-7-coding-specific-acade80df710
+//https://rathod-ajay.medium.com/senior-java-developer-interview-questions-series-2-306e27e220be
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,6 +25,7 @@ public class FindDuplicateStringUsingLambda {
 
     List<String> myList(List<String> data)
     {
+
         return data.stream().collect(Collectors.groupingBy(s->s))
                 .entrySet()
                 .stream()
@@ -130,6 +132,14 @@ public class FindDuplicateStringUsingLambda {
                                   collect(Collectors.groupingBy(Employee::getName, Collectors.counting()));
 
         System.out.println(answer);
+    }
+    void findAverage()
+    {
+        List<Integer> arr = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+        OptionalDouble str = arr.stream().filter(x -> x % 2 == 0).mapToInt(x -> x).average();
+
+        System.out.println(str);
     }
 //    Query to find employee numbers in each department.
 //    SELECT emp_dept, COUNT(*) FROM emp_details GROUP BY emp_dept;

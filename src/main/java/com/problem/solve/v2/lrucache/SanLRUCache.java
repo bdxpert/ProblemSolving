@@ -31,8 +31,8 @@ public class SanLRUCache {
         node.prev = head;
         node.next = head.next;
 
-        head.next = node;
         head.next.prev = node;
+        head.next = node;
     }
     static void remove(Node node)
     {

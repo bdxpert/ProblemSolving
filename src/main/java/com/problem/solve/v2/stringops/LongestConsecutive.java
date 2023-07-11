@@ -16,6 +16,23 @@ public class LongestConsecutive {
         int[] nums5 = {9,1,4,7,3,-1,0,5,8,-1,6};
         System.out.println(longestConsecutive(nums5));
     }
+    //int[] nums5 = {9,1,4,7,3,-1,0,5,8,-1,6};
+    //int[] nums5 = {9,1,4,7,3,-1};
+    public static  int longestConsecutive(int[] nums) {
+        if(nums == null || nums.length == 0) return 0;
+        Set<Integer> dataSet = new HashSet<>();
+        for(int num : nums) dataSet.add(num);
+        int res = 0;
+        for(int num : nums) {
+            int left = num - 1;
+            int right = num + 1;
+            while(dataSet.remove(left)) left--;
+            while(dataSet.remove(right)) right++;
+            res = Math.max(res,right - left - 1);
+            if(dataSet.isEmpty()) return res;//save time if there are items in nums, but no item in hashset.
+        }
+        return res;
+    }
     public static int longestConsecutive2(int[] nums) {
         if(nums.length == 0) return 0;
         int min = nums[0];
@@ -59,20 +76,5 @@ public class LongestConsecutive {
         }
         return counter;//==1?0:counter;
     }
-    //int[] nums5 = {9,1,4,7,3,-1,0,5,8,-1,6};
-    public static  int longestConsecutive(int[] nums) {
-        if(nums == null || nums.length == 0) return 0;
-        Set<Integer> dataSet = new HashSet<>();
-        for(int num : nums) dataSet.add(num);
-        int res = 0;
-        for(int num : nums) {
-            int left = num - 1;
-            int right = num + 1;
-            while(dataSet.remove(left)) left--;
-            while(dataSet.remove(right)) right++;
-            res = Math.max(res,right - left - 1);
-            if(dataSet.isEmpty()) return res;//save time if there are items in nums, but no item in hashset.
-        }
-        return res;
-    }
+
 }

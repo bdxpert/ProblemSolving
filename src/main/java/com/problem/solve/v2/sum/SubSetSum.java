@@ -6,9 +6,11 @@ public class SubSetSum {
     public static boolean canPartition(int[] nums) {
         int sum = 0;
         int n = nums.length;
+
         for(int i : nums) sum+=i;
+
         if(sum%2!=0) return false;
-        sum /= 2;
+        sum = sum / 2;
         mem = new Boolean[n+1][sum+1];
 
         subsetSum(nums,0,sum);
