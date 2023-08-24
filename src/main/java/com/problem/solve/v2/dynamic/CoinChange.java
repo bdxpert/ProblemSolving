@@ -4,13 +4,43 @@ import java.util.Arrays;
 
 public class CoinChange {
     public static void main(String args[]) {
-        int[] coin ={1,2,5}; //amount 11
+        int[] coin ={1,2,5, 6}; //amount 11
         int[] coin2 = {186,419,83,408};
 //        System.out.println(coinChange(coin2, 6249));
 //        System.out.println(coinChangev2(coin, 6));
-        System.out.println(coinChangev3(coin, 6));
+        System.out.println(sanCoinChange(coin, 11));
     }
+    // reference https://www.youtube.com/watch?v=NNcN5X1wsaw
+    public static int coinChangev3(int[] coins, int amount) {
+        if(amount <1) return -1;
+        int[] dp = new int[amount+1];
+        for(int i=1;i<=amount; i++) {
+            dp[i] = Integer.MAX_VALUE;
+            for(int coin:coins) {
+                if(coin <=i && dp[i-coin] !=Integer.MAX_VALUE) {
+                    dp[i] = Math.min(dp[i], 1+dp[i-coin]);
+                }
+            }
+        }
+        for(int i=0;i<=amount;i++) {
+            System.out.println(" = "+dp[i]);
+        }
+        if(dp[amount] == Integer.MAX_VALUE) return -1;
 
+        return dp[amount];
+    }
+    static int  sanCoinChange(int[] coins, int amount) {
+        int[] dp = new int[amount+1];
+        for(int i=1;i<=amount;i++) {
+            dp[i] = Integer.MAX_VALUE;
+            for(int coin:coins) {
+                if(coin<=i && dp[i-coin]!=Integer.MAX_VALUE) {
+                    dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
+                }
+            }
+        }
+        return dp[amount] == Integer.MAX_VALUE ? -1: dp[amount];
+    }
 
     public static int coinChangev2(int[] coins, int amount) {
         if(amount<1) return 0;
@@ -30,22 +60,7 @@ public class CoinChange {
         count[remminder-1] = (min==Integer.MAX_VALUE) ? -1 : min;
         return count[remminder-1];
     }
-    // reference https://www.youtube.com/watch?v=NNcN5X1wsaw
-    public static int coinChangev3(int[] coins, int amount) {
-        if(amount <1) return -1;
-        int[] dp = new int[amount+1];
-        for(int i=1;i<=amount; i++) {
-            dp[i] = Integer.MAX_VALUE;
-            for(int coin:coins) {
-                if(coin <=i && dp[i-coin] !=Integer.MAX_VALUE) {
-                    dp[i] = Math.min(dp[i], 1+dp[i-coin]);
-                }
-            }
-        }
-        if(dp[amount] == Integer.MAX_VALUE) return -1;
 
-        return dp[amount];
-    }
 
     public static int coinChange(int[] coins, int amount) {
        // int max = -1;
@@ -99,4 +114,6 @@ public class CoinChange {
 
         return res;
     }
+
+
 }

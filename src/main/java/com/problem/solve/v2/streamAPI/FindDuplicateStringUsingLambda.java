@@ -3,8 +3,11 @@ package com.problem.solve.v2.streamAPI;
 //https://rathod-ajay.medium.com/senior-java-dev-interview-question-2023-series-17-contains-all-the-interview-questions-till-now-a3dd19121d67
 //https://rathod-ajay.medium.com/java-developer-interview-question-series-7-coding-specific-acade80df710
 //https://rathod-ajay.medium.com/senior-java-developer-interview-questions-series-2-306e27e220be
+import com.problem.solve.v2.csvreader.CSVReaderV2;
+
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class FindDuplicateStringUsingLambda {
     public static void main(String[] args) {
@@ -22,7 +25,16 @@ public class FindDuplicateStringUsingLambda {
         HashSetTest hashSetTest= new HashSetTest();
         hashSetTest.doSomethingWithHashSet();
     }
-
+    /*
+    public static void printCountryWithLargestNumberOfContracts(List<Customer> customers) {
+        Map<String, Integer> map = new HashMap<>();
+        for (CSVReaderV2.Customer c : customers) {
+            map.put(c.country, map.getOrDefault(c.country, 0) + c.contrcnt);
+        }
+        Map.Entry<String, Integer> maxEntry = map.entrySet().stream().max(Map.Entry.comparingByValue()).get();
+        System.out.println(maxEntry.getKey() + " (" + maxEntry.getValue() + " contracts)");
+    }
+    */
     List<String> myList(List<String> data)
     {
 
@@ -33,6 +45,7 @@ public class FindDuplicateStringUsingLambda {
                 .map(ent->ent.getKey())
                 .collect(Collectors.toList());
     }
+
     void eleminateDistinct()
     {
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 3, 2, 5, 6, 4, 7, 8, 7, 6);
@@ -141,8 +154,6 @@ public class FindDuplicateStringUsingLambda {
 
         System.out.println(str);
     }
-//    Query to find employee numbers in each department.
-//    SELECT emp_dept, COUNT(*) FROM emp_details GROUP BY emp_dept;
     //What would be the size of the HashSet?
     // What can we do to stop HashSet from adding duplicate students with the same name?
     // please tell us about the workaround.

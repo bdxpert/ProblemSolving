@@ -42,8 +42,7 @@ public class CSVReaderV2 {
         for (Customer c : customers) {
             map.put(c.country, map.getOrDefault(c.country, 0) + c.contrcnt);
         }
-        Map.Entry<String, Integer> maxEntry = map.entrySet().stream().
-                max(Map.Entry.comparingByValue()).get();
+        Map.Entry<String, Integer> maxEntry = map.entrySet().stream().max(Map.Entry.comparingByValue()).get();
         System.out.println(maxEntry.getKey() + " (" + maxEntry.getValue() + " contracts)");
     }
 
