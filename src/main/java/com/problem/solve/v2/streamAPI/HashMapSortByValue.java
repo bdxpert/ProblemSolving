@@ -3,6 +3,8 @@ package com.problem.solve.v2.streamAPI;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+// REF: https://www.scaler.com/topics/sort-map-by-value-in-java/
+//https://www.techiedelight.com/sort-map-java-reverse-ordering-keys/
 
 public class HashMapSortByValue {
     /*
@@ -79,7 +81,7 @@ public class HashMapSortByValue {
         data.put("c", 1);
         List<Integer> dataKey = new ArrayList<>();
 
-        for(HashMap.Entry<String, Integer> datum:data.entrySet()) {
+        for(Map.Entry<String, Integer> datum:data.entrySet()) {
             dataKey.add(datum.getValue());
         }
         LinkedHashMap<String, Integer> res = new LinkedHashMap<>();

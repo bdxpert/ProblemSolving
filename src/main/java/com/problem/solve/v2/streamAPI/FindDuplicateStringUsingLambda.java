@@ -28,7 +28,7 @@ public class FindDuplicateStringUsingLambda {
     /*
     public static void printCountryWithLargestNumberOfContracts(List<Customer> customers) {
         Map<String, Integer> map = new HashMap<>();
-        for (CSVReaderV2.Customer c : customers) {
+        for (Customer c : customers) {
             map.put(c.country, map.getOrDefault(c.country, 0) + c.contrcnt);
         }
         Map.Entry<String, Integer> maxEntry = map.entrySet().stream().max(Map.Entry.comparingByValue()).get();
